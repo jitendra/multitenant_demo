@@ -23,15 +23,11 @@ db_namespace = namespace :db do
         filename = ENV["TENANT_SCHEMA"] || File.join(ActiveRecord::Tasks::DatabaseTasks.db_dir, "tenant_schema.rb")
 
         conn = ActiveRecord::Base.connection
-        conn.schema_search_path = "\"$user\", public"
-
-        public_schema_tables = conn.tables
 
         File.open(filename, "w:utf-8") do |file|
           tenant = Tenant.first
           if tenant
             conn.schema_search_path = tenant.id.to_s
-            ActiveRecord::SchemaDumper.ignore_tables = public_schema_tables
             ActiveRecord::SchemaDumper.dump(conn, file)
           end
         end
