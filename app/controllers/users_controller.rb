@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
     if @user.save
       log_in @user
-      flash[:success] = "Welcome to Twitter Clone!"
+      flash[:success] = "Welcome to Demo Application"
       redirect_to @user
     else
       render :new

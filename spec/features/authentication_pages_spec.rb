@@ -54,7 +54,7 @@ RSpec.describe "Authentication", type: :feature do
 
       describe "visit root page" do
         before { visit root_path }
-        it { should have_content("Welcome to Twitter Clone") }
+        it { should have_content("Demo Application") }
         it { should have_link("Sign in") }
         it { should have_link("Sign up") }
 

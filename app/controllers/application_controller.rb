@@ -8,6 +8,13 @@ class ApplicationController < ActionController::Base
 
   rescue_from StandardError, with: :dispatch_error unless Rails.env.development?
 
+  prepend_before_action :set_current_tenant
+
+  def set_current_tenant
+    @current_tenant = Tenant.where("lower(url) = ? OR lower(slug) = ?", request.host.downcase, request.subdomain.downcase).first
+    SchemaTools.set_search_path(@current_tenant.id, true)
+  end
+
   def dispatch_error(exception)
     case exception
     when ActiveRecord::RecordNotFound, ActionController::RoutingError

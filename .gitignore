@@ -19,4 +19,5 @@
 
 config/database.yml
 .DS_Store
+.byebug_history
 
