@@ -20,4 +20,4 @@ $ bundle exec rails db:sample_data # Create sample data
 ```
 
 ## Credit
-I used https://github.com/toshimaru/RailsTwitterClone as base code and configured it for Multitenant.
+I used https://github.com/toshimaru/RailsTwitterClone as base code and configured in this repo for Multitenant.
